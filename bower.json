@@ -1,0 +1,24 @@
+{
+  "name": "bg-srcset",
+  "main": "bgsrcset.js",
+  "homepage": "https://github.com/drrobotnik/bgsrcset.js",
+  "authors": [
+    "Jesse Kernaghan",
+    "Brandon Lavigne <brandon.lavigne@gmail.com>"
+  ],
+  "description": "An attempt to bring the srcset spec to the more flexible CSS background image.",
+  "keywords": [
+    "srcset",
+    "responsive",
+    "images",
+    "javascript"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

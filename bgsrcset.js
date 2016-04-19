@@ -2,14 +2,14 @@
 (function(){
     'use strict';
 
-    var bgsrcset = function(){
+    var Bgsrcset = function(){
 
         this.called   = false;
         this.callonce = true;
         this.compat();
     };
 
-    bgsrcset.prototype.init = function(target, callback){
+    Bgsrcset.prototype.init = function(target, callback){
       //retina bool
       this.retina = window.devicePixelRatio > 1;
 
@@ -37,7 +37,7 @@
        *only down to IE8
     / *----------- */
 
-    bgsrcset.prototype.compat = function(){
+    Bgsrcset.prototype.compat = function(){
       var d = document;
       /* check for getElementsByClassName */
       if(typeof d.getElementsByClassName !== 'function'){
@@ -67,7 +67,7 @@
     /* -----------* /
        Gather elements
     / *----------- */
-    bgsrcset.prototype.gather = function(target){
+    Bgsrcset.prototype.gather = function(target){
       var autotypes = ['HTMLCollection', 'NodeList'];
       var e = target;
       var type =  (e.nodeType) ? 'Object' : Object.prototype.toString.call( e ).replace(/^\[object |\]$/g, '');
@@ -85,15 +85,15 @@
       return [];
     };
 
-    bgsrcset.prototype.parseObject = function( target ) {
+    Bgsrcset.prototype.parseObject = function( target ) {
       return (target.nodeType) ? [target] : [];
     };
 
-    bgsrcset.prototype.parseArray = function( target ) {
+    Bgsrcset.prototype.parseArray = function( target ) {
      return target;
     };
 
-    bgsrcset.prototype.parseString = function( target ) {
+    Bgsrcset.prototype.parseString = function( target ) {
 
       var d = document;
       var e = target.trim();
@@ -124,7 +124,7 @@
     /* -----------* /
        Parse datasrc
     / *----------- */
-    bgsrcset.prototype.parse = function(obj){
+    Bgsrcset.prototype.parse = function(obj){
       //our data to parase
       var bgss = obj.getAttribute('bg-srcset');
       /* exit if no attribute */
@@ -178,13 +178,13 @@
     /* -----------* /
        Set image
     / *----------- */
-    bgsrcset.prototype.set = function(){
+    Bgsrcset.prototype.set = function(){
       for(var i = 0, l = this.elements.length; i < l; i++){
         this.setSingle(i);
       }
     };
 
-    bgsrcset.prototype.setSingle = function(id){
+    Bgsrcset.prototype.setSingle = function(id){
       var width = 0,
         elem = this.elements[id],
         comparray = [],
@@ -247,7 +247,7 @@
     /* -----------* /
        Handle Resize
     / *----------- */
-    bgsrcset.prototype.resize = function(){
+    Bgsrcset.prototype.resize = function(){
       var _this = this,
         resizeTimer = setTimeout(function(){}, 0);
 
@@ -263,11 +263,11 @@
        });
     };
 
-    bgsrcset.prototype.addEvent = function(elem, evName, fn){
+    Bgsrcset.prototype.addEvent = function(elem, evName, fn){
       elem.addEventListener(evName,fn,false);
     };
 
-    bgsrcset.prototype.getWidth = function(){
+    Bgsrcset.prototype.getWidth = function(){
         var w, d, e, g;
         w = window;
         d = document;
@@ -289,10 +289,17 @@
       };
     }
 
-    window.bgsrcset = bgsrcset;
+    window.Bgsrcset = Bgsrcset;
 })();
 /*
 usage
-var bgss = new bgsrcset();
+var bgss = new Bgsrcset();
 bgss.init('.bgimg' );
+
+async event usage
+document.addEventListener("post-load", function() {
+    var bgss = new Bgsrcset();
+        bgss.init('.bgimg' );
+});
+
 */
